@@ -17,11 +17,13 @@ MongoClient.connect('mongodb+srv://admin:12qwaszx@cluster0.q2bjw.mongodb.net/tes
 })
 
 /*============== 로그인 페이지 ==============*/
-router.get('/',ctrl.signin);
+router.get('/',ctrl.views.signin);
+router.post('/',ctrl.process.signin);
 
 /*============== 회원가입 페이지 ==============*/
-router.get('/signup',ctrl.signup);
+router.get('/signup',ctrl.views.signup);
 
 router.post('/register', (req,res)=>{
     console.log(req);
+    
 })

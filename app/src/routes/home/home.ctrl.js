@@ -1,14 +1,20 @@
 "use strict";
 
-const signin = (req,res) => {
-    res.render('home/login');
-};
+const views = {
+    signin : (req,res) => {
+        res.render('home/login');
+    },
+    signup : (req,res)=>{
+        res.render('home/signup');
+    },
+}
 
-const signup = (req,res)=>{
-    res.render('home/signup');
-};
-
+const process = {
+    signin: (req, res) =>{
+        console.log(req.body);
+    },
+} 
 module.exports = {
-    signin,
-    signup,
+    views,
+    process,
 };
