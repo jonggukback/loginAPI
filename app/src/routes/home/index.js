@@ -12,7 +12,7 @@ router.post('/',ctrl.process.signin);
 
 /*============== 회원가입 페이지 ==============*/
 router.get('/signup',ctrl.views.signup);
+router.post('/signup', ctrl.process.signup);
 
-router.post('/register', (req,res)=>{
-    console.log(req);
-})
+/*============== 마이 페이지 ==============*/
+router.get('/mypage',ctrl.views.mypage);
