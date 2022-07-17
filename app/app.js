@@ -10,4 +10,7 @@ app.set('views', './src/views'); // ejs
 const home = require("./src/routes/home") // 라우팅
 app.use('/', home); // 미들웨어
 app.use(express.static(`${__dirname}/src/public`));
-module.exports = app;
+
+module.exports = {
+    app,
+};
