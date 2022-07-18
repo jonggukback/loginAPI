@@ -1,5 +1,6 @@
 const id = document.querySelector('#id'),
     pw = document.querySelector('#password'),
+    pw2 = document.querySelector('#password2'),
     email = document.querySelector('#email'),
     gender = document.querySelector('#gender'),
     address = document.querySelector('#address'),
@@ -7,6 +8,9 @@ const id = document.querySelector('#id'),
     btn = document.querySelector('#signinbtn');
 
 btn.addEventListener('click',()=>{
+
+    if(pw.value !== pw2.value) return alert('비밀번호가 다릅니다.');
+
     const req = {
         id: id.value,
         pw: pw.value,

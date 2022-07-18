@@ -14,21 +14,28 @@ class User {
         this.body = body
     }
 
-    login(){
+    async login(){
         const body = this.body;
-        memberDB.collection('login').findOne({ id : body.id }, (err,result)=>{
-            if (err) return {success: false, msg: "데이터를 불러오지 못했습니다."};
+        const user = await memberDB.collection('login').findOne({ id : body.id })
+        if(!user) {
+            return { success: false, msg: "존재하지 않는 아이디입니다." };
+        }
+        if (user.pw === body.pw){
+            return  { success: true };
+        }else {
+            return  { success: false, msg: "로그인에 실패하셨습니다", };
+        }
+    }
 
-            if (!result) return {success: false, msg: "존재하지 않는 아이디입니다."};
-
-            if( result.pw === body.pw ){
-                console.log("로그인 성공");
-                return { success: true };
-            }else {
-                console.log("비밀번호가 틀렸습니다.");
-                return { success: false, msg: "로그인에 실패하셨습니다", };
-            }
-        })
+    async signup(){
+        const body = this.body;
+        const user = await memberDB.collection('login').findOne({ id : body.id })
+        if(user === null){
+            memberDB.collection('login').insertOne(body);
+            return { success: true, };
+        }else{
+            return { success: false, msg: "가입에 실패 했습니다." }
+        }
     }
 }
 
